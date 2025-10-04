@@ -62,17 +62,24 @@ const Dashboard = () => {
                     data={mockChartData}
                     cx="50%"
                     cy="50%"
-                    labelLine={false}
+                    labelLine={{ stroke: "hsl(var(--foreground))" }}
                     label={({ name, value }) => `${name}: ${value}`}
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
+                    style={{ fill: "hsl(var(--foreground))" }}
                   >
                     {mockChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "hsl(var(--card))",
+                      border: "1px solid hsl(var(--border))",
+                      color: "hsl(var(--foreground))",
+                    }}
+                  />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>
@@ -96,12 +103,20 @@ const Dashboard = () => {
                   ]}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis dataKey="day" stroke="hsl(var(--foreground))" />
-                  <YAxis stroke="hsl(var(--foreground))" />
+                  <XAxis 
+                    dataKey="day" 
+                    stroke="hsl(var(--foreground))" 
+                    tick={{ fill: "hsl(var(--foreground))" }}
+                  />
+                  <YAxis 
+                    stroke="hsl(var(--foreground))"
+                    tick={{ fill: "hsl(var(--foreground))" }}
+                  />
                   <Tooltip
                     contentStyle={{
                       backgroundColor: "hsl(var(--card))",
                       border: "1px solid hsl(var(--border))",
+                      color: "hsl(var(--foreground))",
                     }}
                   />
                   <Bar dataKey="scans" fill="hsl(var(--primary))" />
