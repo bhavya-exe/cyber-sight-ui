@@ -55,9 +55,9 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle>Vulnerabilities by Severity</CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <ResponsiveContainer width="100%" height={350}>
-                <PieChart>
+            <CardContent className="p-6 lg:p-10">
+              <ResponsiveContainer width="100%" height={360} className="overflow-visible">
+                <PieChart margin={{ top: 8, right: 64, bottom: 8, left: 64 }}>
                   <Pie
                     data={mockChartData}
                     cx="50%"
@@ -76,7 +76,7 @@ const Dashboard = () => {
                         </text>
                       );
                     }}
-                    outerRadius={100}
+                    outerRadius={90}
                     fill="#8884d8"
                     dataKey="value"
                   >
