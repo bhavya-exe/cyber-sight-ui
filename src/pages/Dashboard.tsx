@@ -55,8 +55,8 @@ const Dashboard = () => {
             <CardHeader>
               <CardTitle>Vulnerabilities by Severity</CardTitle>
             </CardHeader>
-            <CardContent>
-              <ResponsiveContainer width="100%" height={300}>
+            <CardContent className="p-6">
+              <ResponsiveContainer width="100%" height={350}>
                 <PieChart>
                   <Pie
                     data={mockChartData}
