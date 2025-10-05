@@ -57,22 +57,27 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent className="p-6 lg:p-10">
               <ResponsiveContainer width="100%" height={360} className="overflow-visible">
-                <PieChart margin={{ top: 8, right: 64, bottom: 8, left: 64 }}>
+                <PieChart margin={{ top: 8, right: 96, bottom: 8, left: 96 }} style={{ overflow: "visible" }}>
                   <Pie
                     data={mockChartData}
                     cx="50%"
                     cy="50%"
                     labelLine={{ stroke: "hsl(var(--foreground))" }}
-                    label={(entry) => {
+                    label={({ cx, cy, midAngle, outerRadius, name, value }) => {
+                      const RADIAN = Math.PI / 180;
+                      const radius = outerRadius + 16;
+                      const x = (cx as number) + radius * Math.cos(-midAngle * RADIAN);
+                      const y = (cy as number) + radius * Math.sin(-midAngle * RADIAN);
                       return (
                         <text
-                          x={entry.x}
-                          y={entry.y}
+                          x={x}
+                          y={y}
                           fill="hsl(var(--foreground))"
-                          textAnchor={entry.x > entry.cx ? 'start' : 'end'}
+                          textAnchor={x > (cx as number) ? 'start' : 'end'}
                           dominantBaseline="central"
+                          style={{ pointerEvents: 'none' }}
                         >
-                          {`${entry.name}: ${entry.value}`}
+                          {`${name}: ${value}`}
                         </text>
                       );
                     }}
