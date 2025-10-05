@@ -63,11 +63,22 @@ const Dashboard = () => {
                     cx="50%"
                     cy="50%"
                     labelLine={{ stroke: "hsl(var(--foreground))" }}
-                    label={({ name, value }) => `${name}: ${value}`}
+                    label={(entry) => {
+                      return (
+                        <text
+                          x={entry.x}
+                          y={entry.y}
+                          fill="hsl(var(--foreground))"
+                          textAnchor={entry.x > entry.cx ? 'start' : 'end'}
+                          dominantBaseline="central"
+                        >
+                          {`${entry.name}: ${entry.value}`}
+                        </text>
+                      );
+                    }}
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"
-                    style={{ fill: "hsl(var(--foreground))" }}
                   >
                     {mockChartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={entry.color} />
